@@ -6,7 +6,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ModalPollComponent } from '../modal-poll/modal-poll.component';
 import { HeroesService } from '../heroes.service';
 import { getTestBed, ComponentFixtureAutoDetect} from '@angular/core/testing'
-
+import { of } from 'rxjs';
+import { delay } from 'rxjs/internal/operators';
 
 describe('HeroProfileComponent', () => {
   let component: HeroProfileComponent;
@@ -54,7 +55,7 @@ class HeroServiceMock {
    public teams = new Map().set("1","yellow");
 
    public getHeroe(){
-     return Observable.of({data:{results:HEROE_OBJECT}}).delay(1000);
+     return of({data:{results:HEROE_OBJECT}}).pipe(delay(1000));
    }
 
    public getTeamColor(){
